@@ -24,15 +24,13 @@ function updateSauceLabsResult(result, sessionId, jobName) {
 module.exports = function() {
   // Setting test success on SauceLabs
   event.dispatcher.on(event.test.passed, () => {
-    const sessionId = container.helpers('WebDriverIO').browser.requestHandler.sessionID;
-    const jobName = container.helpers('WebDriverIO').config.desiredCapabilities.name;
-    exec(updateSauceLabsResult('true', sessionId, jobName));
+    const sessionId = container.helpers('WebDriver').browser.sessionID;
+    exec(updateSauceLabsResult('true', sessionId));
   });
 
   // Setting test failure on SauceLabs
   event.dispatcher.on(event.test.failed, () => {
-    const sessionId = container.helpers('WebDriverIO').browser.requestHandler.sessionID;
-    const jobName = container.helpers('WebDriverIO').config.desiredCapabilities.name;
-    exec(updateSauceLabsResult('false', sessionId, jobName));
+    const sessionId = container.helpers('WebDriver').browser.sessionID;
+    exec(updateSauceLabsResult('false', sessionId));
   });
 };
