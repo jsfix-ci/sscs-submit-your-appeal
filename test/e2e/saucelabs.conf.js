@@ -92,7 +92,7 @@ const setupConfig = {
       mochawesome: {
         stdout: './functional-output/console.log',
         options: {
-          reportDir: config.get('saucelabs.outputDir'),
+          reportDir: `${process.cwd()}/functional-output/crossbrowser/reports`,
           reportName: 'index',
           inlineAssets: true
         }
