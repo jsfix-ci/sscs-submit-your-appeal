@@ -13,11 +13,11 @@ const sauceUsername = process.env.SAUCE_USERNAME || config.get('saucelabs.userna
 const sauceKey = process.env.SAUCE_ACCESS_KEY || config.get('saucelabs.key');
 
 
-function updateSauceLabsResult(result, sessionId, jobName) {
+function updateSauceLabsResult(result, sessionId) {
   const sauceUrl = ` https://eu-central-1.saucelabs.com/rest/v1/${sauceUsername}/jobs/${sessionId}`;
   const sauceCredentials = `-u ${sauceUsername}:${sauceKey}`;
   // For publishing SauceLabs results through Jenkins Sauce OnDemand plugin:
-  logger.trace(`SauceOnDemandSessionID=${sessionId} job-name=${jobName}`, logPath);
+  logger.trace(`SauceOnDemandSessionID=${sessionId} job-name=sscs-submit-your-appeal`, logPath);
   return `curl -X PUT -s -d '{"passed": ${result}}' ${sauceCredentials} ${sauceUrl}`;
 }
 
