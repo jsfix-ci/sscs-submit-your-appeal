@@ -8,7 +8,6 @@ const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
 const { decode } = require('utils/stringUtils');
-const config = require('config');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -48,16 +47,16 @@ class MRNOverThirteenMonthsLate extends SaveToDraftStore {
   }
 
   next() {
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
-    const allowUC = config.get('features.allowUC.enabled') === 'true';
-    const isUCBenefit = allowUC && String(benefitType) === 'Universal Credit (UC)';
+    const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
+
+    const isCarersAllowanceBenefit = String(benefitType) === benefitTypes.carersAllowance;
+
+    const isBereavementBenefit = String(benefitType) === benefitTypes.bereavementBenefit;
 
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
+      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }

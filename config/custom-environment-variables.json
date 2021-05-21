@@ -42,6 +42,18 @@
     "allowUC": {
       "enabled": "ALLOW_UC_ENABLED"
     },
+    "allowDLA": {
+      "enabled": "ALLOW_DLA_ENABLED"
+    },
+    "allowCA": {
+      "enabled": "ALLOW_CA_ENABLED"
+    },
+    "allowAA": {
+      "enabled": "ALLOW_AA_ENABLED"
+    },
+    "allowBB": {
+      "enabled": "ALLOW_BB_ENABLED"
+    },
     "allowAppointee": {
       "enabled": "ALLOW_APPOINTEE_ENABLED"
     },
@@ -62,9 +74,6 @@
     },
     "antennaWebChat": {
       "enabled": "FT_ANTENNA_WEBCHAT"
-    },
-    "allowUCHearingOption": {
-      "enabled": "FT_ALLOW_UC_HEARING_OPTIONS"
     },
     "multipleDraftsEnabled": {
       "enabled": "MULTIPLE_DRAFTS_ENABLED"

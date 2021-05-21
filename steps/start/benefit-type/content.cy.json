@@ -3,9 +3,9 @@
   "title": "Yng nghyswllt pa fudd-dal y mae eich apêl?",
   "label": "Dewiswch fudd-dal",
   "benefitTypes": {
-    "aa": "Lwfans Gweini",
-    "bb": "Budd-dal Profedigaeth",
-    "ca": "Lwfans Gofalwr",
+    "attendanceallowance": "Lwfans Gweini",
+    "bereavementbenefit": "Budd-dal Profedigaeth",
+    "carersallowance": "Lwfans Gofalwr",
     "cb": "Budd-dal plant - Unig Riant",
     "dla": "Lwfans Byw i’r Anabl (DLA)",
     "esa": "Lwfans Cyflogaeth a Chymorth (ESA)",

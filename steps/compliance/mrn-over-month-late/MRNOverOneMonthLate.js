@@ -7,8 +7,7 @@ const sections = require('steps/check-your-appeal/sections');
 const Joi = require('joi');
 const paths = require('paths');
 const benefitTypes = require('steps/start/benefit-type/types');
-const { decode } = require('utils/stringUtils');
-const config = require('config');
+const { decode, isFeatureFlagEnabled } = require('utils/stringUtils');
 
 const MIN_CHAR_COUNT = 5;
 
@@ -48,16 +47,17 @@ class MRNOverOneMonthLate extends SaveToDraftStore {
   }
 
   next() {
-    const useDWPOfficeESA = [benefitTypes.employmentAndSupportAllowance];
     const benefitType = get(this, 'journey.req.session.BenefitType.benefitType');
 
-    const isDWPOfficeESA = () => useDWPOfficeESA.indexOf(benefitType) !== -1;
-    const allowUC = config.get('features.allowUC.enabled') === 'true';
-    const isUCBenefit = allowUC && String(benefitType) === 'Universal Credit (UC)';
+    const isUCBenefit = String(benefitType) === 'Universal Credit (UC)';
 
+    const allowCarersAllowance = isFeatureFlagEnabled('allowCA');
+    const isCarersAllowanceBenefit = allowCarersAllowance && String(benefitType) === benefitTypes.carersAllowance;
+
+    const allowBereavementBenefitAllowance = isFeatureFlagEnabled('allowBB');
+    const isBereavementBenefit = allowBereavementBenefitAllowance && benefitType && String(benefitType) === benefitTypes.bereavementBenefit;
     return branch(
-      goTo(this.journey.steps.Appointee).if(isUCBenefit),
-      goTo(this.journey.steps.DWPIssuingOfficeEsa).if(isDWPOfficeESA),
+      goTo(this.journey.steps.Appointee).if(isUCBenefit || isCarersAllowanceBenefit || isBereavementBenefit),
       goTo(this.journey.steps.DWPIssuingOffice)
     );
   }
