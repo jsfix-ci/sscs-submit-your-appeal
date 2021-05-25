@@ -2,46 +2,43 @@
 
 
 const content = require('commonContent');
-const testData = require(`test/e2e/data.${language}`);
+const testData = require('test/e2e/data.en');
 
-Feature(`Crossbrowser - PIP E2E SYA - Full Journey`);
+Feature('Crossbrowser - PIP E2E SYA - Full Journey');
 
-Scenario(`English - PIP E2E SYA Journey @functional @crossbrowser @e2e`, I => {
-  const language = 'en';
-  const commonContent = content[language];
+Scenario('English - PIP E2E SYA Journey @functional @crossbrowser @e2e', I => {
+  const commonContent = content['en'];
 
-  I.createTheSession(language);
+  I.createTheSession('en');
 
   I.wait(2);
-  I.enterDetailsFromStartToNINO(commonContent, language);
+  I.enterDetailsFromStartToNINO(commonContent, 'en');
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.continueFromnotAttendingHearing(commonContent);
   I.skipPcq();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+  I.checkYourAppealToConfirmationPage('en', testData.signAndSubmit.signer);
 
   I.endTheSession();
 }).retry(3);
 
 
-Scenario(`Welsh - PIP E2E SYA Journey @functional @crossbrowser @e2e`, I => {
-  const language = 'cy';
-  const commonContent = content[language];
+Scenario('Welsh - PIP E2E SYA Journey @functional @crossbrowser @e2e', I => {
+  const commonContent = content['cy'];
 
-  I.createTheSession(language);
+  I.createTheSession('cy');
 
   I.wait(2);
-  I.enterDetailsFromStartToNINO(commonContent, language);
+  I.enterDetailsFromStartToNINO(commonContent, 'cy');
   I.enterAppellantContactDetailsManuallyAndContinue(commonContent);
   I.checkOptionAndContinue(commonContent, '#doYouWantTextMsgReminders-no');
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.continueFromnotAttendingHearing(commonContent);
   I.skipPcq();
-  I.checkYourAppealToConfirmationPage(language, testData.signAndSubmit.signer);
+  I.checkYourAppealToConfirmationPage('cy', testData.signAndSubmit.signer);
 
   I.endTheSession();
 }).retry(3);
-
