@@ -22,7 +22,7 @@ Scenario('English - PIP E2E SYA Journey @functional @crossbrowser @e2e', I => {
   I.checkYourAppealToConfirmationPage('en', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(1);
+}).retry(3);
 
 
 Scenario('Welsh - PIP E2E SYA Journey @functional @crossbrowser @e2e', I => {
@@ -37,8 +37,8 @@ Scenario('Welsh - PIP E2E SYA Journey @functional @crossbrowser @e2e', I => {
   I.enterDetailsFromNoRepresentativeToNoUploadingEvidence(commonContent);
   I.enterDoYouWantToAttendTheHearing(commonContent, '#attendHearing-no');
   I.continueFromnotAttendingHearing(commonContent);
-  I.skipPcq();
+  I.skipPcqCY();
   I.checkYourAppealToConfirmationPage('cy', testData.signAndSubmit.signer);
 
   I.endTheSession();
-}).retry(1);
+}).retry(3);
