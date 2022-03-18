@@ -21,7 +21,7 @@ After(I => {
   testUser.deleteUser(userEmail);
 });
 
-Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @fullFunctional`, async I => {
+Scenario(`${language.toUpperCase()} - Sign in as a new user and verify draft appeals page @fullfunctional`, async I => {
   await moment().locale(language);
   await I.enterDetailsFromStartToDraftAppeals(commonContent, language, userEmail);
   await I.enterAppellantContactDetailsWithMobileAndContinueAfterSignIn(commonContent, language, '07411222222');
