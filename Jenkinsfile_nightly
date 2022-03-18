@@ -39,11 +39,11 @@ withNightlyPipeline("nodejs", product, component) {
     env.TRIBUNALS_CASE_API_URL = params.TRIBUNALS_CASE_API_URL
 
     before('DependencyCheckNightly') {sh 'yarn test:audit'}
-    enableCrossBrowserTest(60)
-    enableFortifyScan('sscs-aat')
+//     enableCrossBrowserTest(60)
+//     enableFortifyScan('sscs-aat')
     enableFullFunctionalTest(120)
-    enableSecurityScan()
-    enableMutationTest()
+//     enableSecurityScan()
+//     enableMutationTest()
 
     after('fortify-scan') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
